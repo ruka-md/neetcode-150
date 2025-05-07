@@ -1,6 +1,6 @@
 # Notes on sorted() vs list.sort()
 
-## ✅ Key Difference
+## Key Difference
 
 | Expression      | Meaning                                      | Result                   |
 |------------------|-----------------------------------------------|---------------------------|
@@ -11,7 +11,7 @@
 - `list.sort()` is the factory process itself — it modifies the original list, and **returns nothing**.
 - Trying to assign the result of `list.sort()` will give you `None`.
 
-## ✅ Correct usage
+## Correct usage
 
 ```python
 # Use sort() when you want to modify the original list
