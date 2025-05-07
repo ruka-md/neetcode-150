@@ -1,6 +1,6 @@
 # 0001 - Contains Duplicate
 
-## ✅ Summary
+## Summary
 
 Return `True` if any value appears more than once in the list.
 
