@@ -1,4 +1,4 @@
-# 0001. Two Sum
+# 0003. Two Sum
 
 ## Problem
 Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that they add up to `target`.
