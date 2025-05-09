@@ -1,17 +1,4 @@
-# 0001. Two Sum
 
-## Problem
-Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that they add up to `target`.
-
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-
-Return the answer with the smaller index first.
-
----
-
-## Approaches
-
-```python
 # Approach 1: Hash Map
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
