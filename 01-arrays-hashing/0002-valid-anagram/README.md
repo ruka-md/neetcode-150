@@ -4,23 +4,25 @@
 
 Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.
 
-An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase.
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
 
-## 🧩 Approach
+---
 
-### Method 1: `sorted(s) == sorted(t)`
+## Summary
 
-- Uses built-in `sorted()` to compare sorted characters.
-- Simple and intuitive.
+Check if two strings are anagrams of each other.
 
-### Method 2: Use `collections.Counter`
+### 🧠 Key Insight
 
-- Count each character in both strings and compare dictionaries.
-- More efficient than sorting.
+- Sorting both strings and comparing them gives a simple and effective solution.
+- Alternatively, use a dictionary or `collections.Counter` to count characters.
 
-## ⏱️ Time Complexity
+### 🔍 Complexity
 
-| Method   | Time      | Space     |
-|----------|-----------|-----------|
-| `sorted` | O(n log n)| O(n)      |
-| `Counter`| O(n)      | O(n)      |
+- Time: O(n log n) for sorting approach
+- Space: O(1) if character set is fixed (e.g., only lowercase letters)
+
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
