@@ -1,3 +1,4 @@
+```python
 # Notes: 0004 - Group Anagrams
 
 # ===================================================
@@ -20,45 +21,52 @@ for c in word:
     count[ord(c) - ord('a')] += 1
 key = tuple(count)
 
-# Why it works:
+# Explanation:
 # - ord(c) - ord('a') maps 'a' to 0, ..., 'z' to 25
-# - tuple(count) is hashable and usable as a dict key
-# - Faster than sorting: O(k) per word
+# - tuple(count) is hashable and usable as a dictionary key
+# - This approach runs in O(k) per word (faster than sorting)
+
 
 # ===================================================
-# 🔤 Handling sorted(word) → back to string
+# 🔤 Using sorted(word) and join()
 # ===================================================
 
 # sorted(word) returns a list of characters
-# ''.join(...) turns it back into a string
+# Use ''.join(...) to turn it back into a string
 
 # ✅ Example:
 sorted("word")            # → ['d', 'o', 'r', 'w']
 ''.join(sorted("word"))   # → 'dorw'
 
+
 # ===================================================
-# 📦 Extracting grouped results from a dictionary
+# 📦 Getting all values from a dictionary
 # ===================================================
 
 # dictionary.values() gives all the grouped lists
 list(dictionary.values())  # → List[List[str]]
 
+
 # ===================================================
-# 🧰 Safe grouping with defaultdict(list)
+# 🧰 Using defaultdict(list)
 # ===================================================
 
-# No need to check key existence
+# Automatically initializes missing keys with empty lists
 from collections import defaultdict
 
 group_map = defaultdict(list)
 group_map[key].append(word)
 
+
 # ===================================================
-# ⚠️ Dict key types: what you can and can't use
+# ⚠️ Dictionary Keys - What you can and can't use
 # ===================================================
 
-# ❌ list → NOT hashable, cannot be used as key
-# ✅ Allowed keys:
+# ❌ Invalid as key:
+# - list (e.g., ['a', 'b']) → unhashable
+
+# ✅ Valid keys:
 # - ''.join(sorted(word)) → string
 # - tuple(sorted(word))   → tuple of characters
-# - tuple(count)          → tuple of 26 ints (char frequencies)
+# - tuple(count)          → tuple of 26 integers
+```
