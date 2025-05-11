@@ -1,51 +1,64 @@
 # Notes: 0004 - Group Anagrams
 
-# 🔁 Character Count → Tuple Technique (Anagram Pattern)
+# ===================================================
+# 🔁 Technique: Character Count → Tuple as a Dict Key
+# ===================================================
 
-# 🧠 When to use it:
-# Use this technique when the order of characters doesn't matter,
-# but the character composition (type + count) must match exactly.
+# ✅ Use when:
+# - Order of characters does not matter
+# - You care about the exact character composition (type + frequency)
 
-# 🔸 Typical problems:
+# 🧩 Common problems:
 # - isAnagram(s, t)
 # - groupAnagrams(strs)
 # - findAllAnagrams(s, p)
 # - permutationInString(s1, s2)
 
-# 🛠️ Pattern:
+# 🛠️ Template:
 count = [0] * 26
 for c in word:
     count[ord(c) - ord('a')] += 1
-key = tuple(count)  # hashable and usable as a dictionary key
+key = tuple(count)
 
-# ord(c) - ord('a') maps 'a' to 0, 'b' to 1, ..., 'z' to 25
-# tuple(count) is immutable and can be used as a key
-# Runs in O(k) time per word (faster than sorting)
+# Why it works:
+# - ord(c) - ord('a') maps 'a' to 0, ..., 'z' to 25
+# - tuple(count) is hashable and usable as a dict key
+# - Faster than sorting: O(k) per word
 
-# 🧩 .join() after sorted()
+# ===================================================
+# 🔤 Handling sorted(word) → back to string
+# ===================================================
 
 # sorted(word) returns a list of characters
-# Use ''.join(...) to turn it back into a string
+# ''.join(...) turns it back into a string
 
 # ✅ Example:
 sorted("word")            # → ['d', 'o', 'r', 'w']
 ''.join(sorted("word"))   # → 'dorw'
 
-# 📦 Extracting all values from a dictionary
+# ===================================================
+# 📦 Extracting grouped results from a dictionary
+# ===================================================
+
+# dictionary.values() gives all the grouped lists
 list(dictionary.values())  # → List[List[str]]
 
-# 🧰 Using defaultdict(list)
+# ===================================================
+# 🧰 Safe grouping with defaultdict(list)
+# ===================================================
 
-# Automatically initializes missing keys with empty lists
+# No need to check key existence
 from collections import defaultdict
 
-dict = defaultdict(list)
-dict[key].append(value)  # no need for key existence check
+group_map = defaultdict(list)
+group_map[key].append(word)
 
-# ⚠️ Dictionary Keys: What you can and can't use
+# ===================================================
+# ⚠️ Dict key types: what you can and can't use
+# ===================================================
 
-# ❌ Cannot use list as a dictionary key (unhashable)
-# ✅ Can use:
+# ❌ list → NOT hashable, cannot be used as key
+# ✅ Allowed keys:
 # - ''.join(sorted(word)) → string
 # - tuple(sorted(word))   → tuple of characters
-# - tuple(count)          → tuple of 26 integers (a-z counts)
+# - tuple(count)          → tuple of 26 ints (char frequencies)
